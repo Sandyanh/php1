@@ -10,11 +10,11 @@ $x = (2<3); //less than (true)
 $x = (2>=3); //greater than or equal to (false)
 $x = (2<=3); //less than or equal to (true)
 // Bài 2: Chuổi (string)
-$s = "Hello\nWorld";
+$s = "Hello\nWorld<br>";
 echo $s;
-$s = 'It\'s\n'; //It's
+$s = "It\'s\n<br>"; //It's
 echo $s;
-echo "\nHello<br>World";
+echo "\nHello<br>World<br>";
 echo "\u{00C2A9}"; //(copyright sign)
 echo "\u{C2A9}";
 $a = 'hello';
