@@ -12,9 +12,7 @@
 <body>
     <?php
         $productName = $txtPName = $txtDescription =  $description =  $price =  $category = $image = $category = "";
-        // if($_SERVER["REQUEST_METHOD"] == "POST"){
-            
-        // }
+        
         if(isset($_POST['btnsubmit'])){
             if(trim(empty($_POST['nameproduct']))){
                 $productName = "* You must enter your product name!";
@@ -60,7 +58,7 @@
                             <textarea class="form-control" name="description"><?php echo $txtDescription ?></textarea>
                         </div>
                         <span class="error"><?php echo $description; ?> </span>
-                    </div> <!-- form-group // -->
+                    </div> 
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Price</label>
                         <div class="col-sm-9">
@@ -77,7 +75,7 @@
                                 <option value="Tablet">Tablet</option>
                             </select>
                         </div>
-                    </div> <!-- form-group // -->
+                    </div> 
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Image Products</label>
                         <div class="col-sm-3">
@@ -88,14 +86,14 @@
                     <hr>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <!-- <button type="submit" name="submit" class="btn btn-primary">Save</button> -->
+                            
                             <input type="submit" class = "btn btn-primary" name="btnsubmit" value="Save">
                         </div>
-                    </div> <!-- form-group // -->
+                    </div> 
                     
                 </form>
-            </div><!-- panel-body // -->
-        </section><!-- panel// -->
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
