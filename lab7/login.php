@@ -11,37 +11,48 @@
   </head>
   <body>
     <?php
+      session_start();
+      include 'connect.php';
       if(isset($_POST['submit'])){
-        $user = $_POST['user'];
-        $pass = $_POST['pass'];
-        if(empty($user)){
-          $errorUser = "Username không được để trống";
-        }else{
-          if(strlen($_POST['user']) < 7){
-            $errorUser = "Username phải lớn hơn 6 ký tự";
-          }
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $sql = "SELECT * FROM register WHERE email='" . $email . "' AND password='" . $password . "'";
+        $stsm = $conn->prepare($sql);
+        $stsm->execute();
+        $rows = $stsm->fetch(PDO::FETCH_ASSOC);
+        if (is_array($rows)) {
+            $_SESSION['user'] = $rows;
+            // echo "Đăng nhập thành công";
+            if(empty($email)){
+              $errorEmail = "Email không được để trống";
+            }else{
+              if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errorEmail = "Email không đúng định dạng";
+              }
+            }
+            if(empty($password)){
+              $errorPass = "Password không được để trống";
+            }else{
+              if(strlen($_POST['password']) < 7){
+                $errorPass = "Password phải lớn hơn 6 ký tự";
+              }
+            }
         }
-        if(empty($pass)){
-          $errorPass = "Password không được để trống";
-        }else{
-          if(strlen($_POST['pass']) < 7){
-            $errorPass = "Password phải lớn hơn 6 ký tự";
-          }
-        }
+        
       }
     ?>
     <div class="container py-5">
       <h1>Login form</h1>
         <form method="post">
             <div class="mb-3">
-              <label for="exampleInputUser1" class="form-label">Username</label>
-              <input type="text" name="user" class="form-control">
+              <label for="exampleInputUser1" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control">
               <small class="text-danger"><?php echo (isset($errorUser)) ? $errorUser : "";?></small>
             </div>
             
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" name="pass" class="form-control">
+              <input type="password" name="password" class="form-control">
               <small class="text-danger"><?php echo (isset($errorPass)) ? $errorPass : "";?></small>
             </div>
             

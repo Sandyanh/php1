@@ -11,14 +11,15 @@
   </head>
   <body>
     <?php
+    session_start();
     include './connect.php';
 
       if(isset($_POST['submit'])){
         $user = $_POST['user'];
         $email = $_POST['email'];
-        $pass = $_POST['pass'];
+        $password = $_POST['password'];
         $confirm = $_POST['confirm'];
-        $sql = "INSERT INTO `register`(`username`, `email`, `password`, `confirm_password`) VALUES ('$user','$email','$pass','$confirm')";
+        $sql = "INSERT INTO `register`(`username`, `email`, `password`, `confirm_password`) VALUES ('$user','$email','$password','$confirm')";
         $conn->exec($sql);
         if(empty($user)){
           $errorUser = "Username không được để trống";
@@ -34,17 +35,17 @@
             $errorEmail = "Email không đúng định dạng";
           }
         }
-        if(empty($pass)){
+        if(empty($password)){
           $errorPass = "Password không được để trống";
         }else{
-          if(strlen($_POST['pass']) < 7){
+          if(strlen($_POST['password']) < 7){
             $errorPass = "Password phải lớn hơn 6 ký tự";
           }
         }
         if(empty($confirm)){
           $errorConfirm = "Password không được để trống";
         }else{
-          if ($confirm != $pass) {
+          if ($confirm != $password) {
             $errorConfirm = "Password chưa chính xác";
           }
         }
@@ -66,7 +67,7 @@
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" name="pass" class="form-control">
+              <input type="password" name="password" class="form-control">
               <small class="text-danger"><?php echo (isset($errorPass)) ? $errorPass : "";?></small>
             </div>
             <div class="mb-3">
